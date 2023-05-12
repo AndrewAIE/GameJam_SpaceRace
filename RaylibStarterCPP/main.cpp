@@ -30,8 +30,8 @@ int main(int argc, char* argv[])
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    int screenWidth = 800;
-    int screenHeight = 450;
+    int screenWidth = 500;
+    int screenHeight = 620;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
     Game game;
@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
         
         game.Draw();
         
-        ClearBackground(RAYWHITE);
+        ClearBackground(BLACK);
 
         
 

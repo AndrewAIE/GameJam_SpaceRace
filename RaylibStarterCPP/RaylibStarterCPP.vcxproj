@@ -177,9 +177,9 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameDefines.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Point2D.h" />
-    <ClInclude Include="VARIABLES.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

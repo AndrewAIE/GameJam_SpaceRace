@@ -1,22 +1,17 @@
 #include "Paddle.h"
-#include "raylib.h"
 
-Paddle::Paddle() {
-	m_height = 0;
-	m_width = 0;
-	m_speed = 0;
-	m_position.x = 0;
-	m_position.y = 0;
+
+Paddle::Paddle() : m_height{ }, m_width{ }, m_position{ }, m_speed{ }
+{
+	
+	
 	
 }
 
-Paddle::Paddle(int height, int width, int x, int y, int speed) 
+Paddle::Paddle(int height, int width, int speed, Vector2 position) : m_height { height }, m_width { width }, m_speed{ speed }, m_position { position }
 {
-	m_height = height;
-	m_width = width;
-	m_position.x = x;
-	m_position.y = y;
-	m_speed = speed;
+	
+	
 }
 
 Paddle::~Paddle() 
@@ -24,17 +19,10 @@ Paddle::~Paddle()
 
 }
 
-
-
 void Paddle::Draw() 
 {
-	DrawRectangle(m_position.x, m_position.y, m_width, m_height, BLACK);
+	DrawRectangle(m_position.x, m_position.y, m_width, m_height, DARKBLUE);
 };
-
-void Paddle::SetPosition(Point2D position) 
-{
-	m_position = position;
-}
 
 void Paddle::MoveLeft() 
 {
@@ -51,9 +39,9 @@ void Paddle::MoveLeft()
 
 void Paddle::MoveRight() 
 {
-	if (m_position.x >= GetScreenWidth() - (m_width / 2)) 
+	if (m_position.x >= GetScreenWidth() - (m_width + 25)) 
 	{
-		m_position.x = GetScreenWidth() - (m_width / 2);
+		m_position.x = GetScreenWidth() - (m_width + 25);
 	}
 	else 
 	{
@@ -62,7 +50,7 @@ void Paddle::MoveRight()
 	
 }
 
-Point2D Paddle::GetPosition() 
+Vector2 Paddle::GetPosition() 
 {
 	return m_position;
 }

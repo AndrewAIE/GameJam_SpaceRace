@@ -44,10 +44,10 @@
     <ClInclude Include="Ball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VARIABLES.h">
+    <ClInclude Include="Point2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Point2D.h">
+    <ClInclude Include="GameDefines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

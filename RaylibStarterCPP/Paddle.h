@@ -1,22 +1,24 @@
 #pragma once
 #include "Point2D.h"
+#include "raylib.h"
+
 class Paddle
 {
 
 public:
 	Paddle();
-	Paddle(int height, int width, int x, int y, int speed);
+	Paddle(int height, int width, int speed, Vector2 position);
 	~Paddle();
 	
 	void Draw();
 	void MoveLeft();
 	void MoveRight();
-	void SetPosition(Point2D position);
-	Point2D GetPosition();
+	 
+	Vector2 GetPosition();
 
 
 private:
-	Point2D m_position;
+	Vector2 m_position;
 	int m_height;
 	int m_width;
 	int m_speed;
