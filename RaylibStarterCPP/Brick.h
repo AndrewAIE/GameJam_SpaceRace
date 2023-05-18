@@ -10,9 +10,10 @@ public:
 	~Brick();
 	
 	void Draw();
-
 	void AssignColor(int yPos);
+	void CheckCollision(Rectangle ball);
 	
+	Rectangle GetBoundBox();
 
 
 private:
@@ -24,6 +25,7 @@ private:
 	Color m_color;
 	Vector2 m_position;
 
+	Rectangle m_rectangleBound;
 
 };
 

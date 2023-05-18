@@ -5,25 +5,26 @@
 void Game::Initialize() 
 {
 	m_player = Paddle{ GetScreenHeight() / m_paddleHeightRatio, GetScreenWidth() / m_paddleWidthRatio, m_paddleSpeedRatio, 
-				{GetScreenWidth() / 2, GetScreenHeight() - GetScreenHeight() / m_paddleGapRatio}};
+				{m_screenCentreX, m_paddleGap}};
 
-	m_ball = Ball{ 4, m_ballSpeed, {GetScreenWidth() / 2, (GetScreenHeight() / 2) + m_topWindowGap}, WHITE };
+	m_ball = Ball{ 10, 5, m_ballSpeed, {m_screenCentreX, m_screenCentreY}, m_ballDirection, WHITE };
 
-	for (int x = 0; x < brickCols; x++) 
+	for (int x = 0.0f; x < brickCols; x++) 
 	{
-		for (int y = 0; y < brickRows; y++) 
+		for (int y = 0.0f; y < brickRows; y++) 
 		{
 			m_bricks[x][y] = Brick((GetScreenHeight() / m_brickHeightRatio) - m_brickHeightOffset, (GetScreenWidth() / brickCols) - m_brickWidthOffset, 
-								{ x * (GetScreenWidth() / brickCols) + m_brickWidthOffset, (y * (GetScreenHeight() / m_brickHeightRatio)) + m_topWindowGap });
+								{ x * m_brickPosX + m_brickWidthOffset, y * m_brickPosY + m_topWindowGap });
 			m_bricks[x][y].AssignColor(y);
 		}
-	}
-	
+	}	
 }
 
 void Game::Update() 
 {
 	PlayerControl();
+	m_ball.Update();
+	CheckCollision();
 }
 void Game::Draw() 
 {
@@ -49,7 +50,22 @@ void Game::PlayerControl()
 	{
 		m_player.MoveRight();
 	}
+}
 
+void Game::CheckCollision() 
+{
+	m_ball.CheckCollision(m_player.GetBoundBox());
+	for (int x = 0; x < brickCols; x++)
+	{
+		for (int y = 0; y < brickRows; y++)
+		{
+			m_ball.CheckCollision(m_bricks[x][y].GetBoundBox());
+			if (CheckCollisionRecs(m_ball.GetBoundBox(), m_bricks[x][y].GetBoundBox())) 
+			{
+				m_bricks[x][y];
+			}			
+		}
+	}
 }
 
 

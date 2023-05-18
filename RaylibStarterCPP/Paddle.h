@@ -13,18 +13,16 @@ public:
 	void Draw();
 	void MoveLeft();
 	void MoveRight();
-	 
-	Vector2 GetPosition();
 
-
+	Rectangle GetBoundBox();
+	
 private:
+	
 	Vector2 m_position;
+	Rectangle m_rectangleBound;
 	int m_height;
 	int m_width;
 	int m_speed;
-
-	
-
 
 };
 

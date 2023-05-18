@@ -30,8 +30,8 @@ int main(int argc, char* argv[])
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    int screenWidth = 500;
-    int screenHeight = 620;
+    int screenWidth = 510;
+    int screenHeight = 610;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
     Game game;
@@ -71,7 +71,3 @@ int main(int argc, char* argv[])
 }
 
 
-//GAME
-//PADDLE
-//BRICK
-//BALL
