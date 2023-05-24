@@ -11,16 +11,21 @@ public:
 	
 	void Draw();
 	void AssignColor(int yPos);
-	void CheckCollision(Rectangle ball);
 	
-	Rectangle GetBoundBox();
+	
+	void Destroy();
+	bool GetDestroyed();
 
+	Rectangle GetBoundBox();
+	
 
 private:
 	
 	int m_height;
 	int m_width;
 	int m_offset;
+
+	bool m_isDestroyed;
 		
 	Color m_color;
 	Vector2 m_position;

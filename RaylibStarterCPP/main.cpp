@@ -33,16 +33,34 @@ int main(int argc, char* argv[])
     int screenWidth = 510;
     int screenHeight = 610;
 
+    char title[] = "Brick Breaker 1976";
+    char subtitle[] = "Arcade Edition";
+    char startGame[] = "Press Any Key To Begin";
+    char escGame[] = "Press Escape to Exit the Game";
+
+
+
+
+
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
     Game game;
     game.Initialize();
-    
+    bool gameRunning = false;
+
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        
+        DrawText(title, GetScreenWidth() / 2, (GetScreenHeight() / 2) - 30, 40, WHITE);
+        DrawText(subtitle, GetScreenWidth() / 2, (GetScreenHeight() / 2) + 10, 30, WHITE);
+        
+
+
+        while(gameRunning)
+
         // Update
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
@@ -54,6 +72,8 @@ int main(int argc, char* argv[])
         
         game.Draw();
         
+        gameRunning = game.CheckIfRunning();
+
         ClearBackground(BLACK);
 
         

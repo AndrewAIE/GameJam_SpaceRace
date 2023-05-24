@@ -22,6 +22,7 @@ Paddle::~Paddle()
 
 void Paddle::Draw() 
 {
+	
 	DrawRectangle(m_position.x, m_position.y, m_width, m_height, DARKBLUE);
 };
 
@@ -29,6 +30,7 @@ void Paddle::Draw()
 
 void Paddle::MoveLeft() 
 {
+	
 	if (m_position.x <= m_width / 2) 
 	{
 		m_position.x = m_width / 2;
@@ -36,6 +38,7 @@ void Paddle::MoveLeft()
 	}
 	else 
 	{
+		
 		m_position.x -= m_speed;
 		m_rectangleBound.x = m_position.x;
 	}	
@@ -44,6 +47,7 @@ void Paddle::MoveLeft()
 
 void Paddle::MoveRight() 
 {
+	
 	if (m_position.x >= GetScreenWidth() - (m_width + 25)) 
 	{
 		m_position.x = GetScreenWidth() - (m_width + 25);
@@ -60,3 +64,5 @@ Rectangle Paddle::GetBoundBox()
 {
 	return m_rectangleBound;
 }
+
+

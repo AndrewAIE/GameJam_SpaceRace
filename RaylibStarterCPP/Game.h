@@ -5,6 +5,7 @@
 #include "GameDefines.h"
 #include "Raylib.h"
 #include "Ball.h"
+#include <vector>
 
 
 class Game
@@ -16,6 +17,7 @@ public:
 	void Draw();
 	void PlayerControl();
 	void CheckCollision();
+	bool CheckIfRunning();
 
 private:
 	
@@ -37,11 +39,18 @@ private:
 	float m_brickPosX = (float)(GetScreenWidth() / brickCols);
 	float m_brickPosY = (float)(GetScreenHeight() / m_brickHeightRatio);
 
+	
+	bool m_gameRunning = true;
+
+	
+
+	
 	float m_ballSpeed = 2.0f;
-	Vector2 m_ballDirection = { 0, 2 };
+	Vector2 m_ballDirection = { 1, 2 };
 
 	Paddle m_player;
 	Ball m_ball;
+	
 	Brick m_bricks[brickCols][brickRows];
 };
 

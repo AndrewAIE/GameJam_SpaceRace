@@ -11,18 +11,26 @@ public:
 	~Paddle();
 	
 	void Draw();
+
 	void MoveLeft();
 	void MoveRight();
 
 	Rectangle GetBoundBox();
+
+	
+	
+
+	
 	
 private:
 	
 	Vector2 m_position;
+	Vector2 m_movement;
 	Rectangle m_rectangleBound;
 	int m_height;
 	int m_width;
 	int m_speed;
+	
 
 };
 

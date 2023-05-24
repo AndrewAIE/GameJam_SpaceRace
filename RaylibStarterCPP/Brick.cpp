@@ -8,16 +8,21 @@ Brick::Brick() : m_height {}, m_width {}, m_position {}, m_color {}
 Brick::Brick(int height, int width, Vector2 position) : m_height { height }, m_width { width }, m_position { position }, m_color {}
 {
 	m_rectangleBound = { m_position.x, m_position.y, (float)m_width, (float)m_height };
+	m_isDestroyed = false;
 }
 
 Brick::~Brick()
 {
-	delete &m_height, &m_width, &m_position, &m_color, &m_rectangleBound;
+	
 }
 
 void Brick::Draw() 
 {
-	DrawRectangle(m_position.x, m_position.y, m_width, m_height, m_color);
+	if (!m_isDestroyed) 
+	{
+		DrawRectangle(m_position.x, m_position.y, m_width, m_height, m_color);
+	}
+	
 }
 
 void Brick::AssignColor(int yPos)
@@ -43,9 +48,21 @@ void Brick::AssignColor(int yPos)
 	}
 }
 
+void Brick::Destroy() 
+{	
+	m_isDestroyed = true;
+}
+
+bool Brick::GetDestroyed() 
+{
+	return m_isDestroyed;
+}
+
 Rectangle Brick::GetBoundBox()
 {
 	return m_rectangleBound;
 }
+
+
 
 

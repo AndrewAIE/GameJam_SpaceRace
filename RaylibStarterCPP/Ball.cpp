@@ -38,12 +38,33 @@ void Ball::CheckCollision(Rectangle object)
 	
 	if (CheckCollisionRecs(m_rectangleBound, object)) 
 	{
-		m_direction.y *= -1.0f;			
+		m_direction.y *= -1;
+
+		//find x distance
+		//if distance > ball width + other width
+		// x *= -1
 	};
+}
+
+void Ball::EdgeCollision()
+{
+	if (m_position.x >= GetScreenWidth() - 25 || m_position.x <= 0) 
+	{
+		m_direction.x *= -1.0f;
+	}
+	if (m_position.y >= GetScreenHeight() || m_position.y <= 0) 
+	{
+		m_direction.y *= -1.0f;
+	}
 }
 
 Rectangle Ball::GetBoundBox()
 {
 	return m_rectangleBound;
+}
+
+Vector2 Ball::GetPosition() 
+{
+	return m_position;
 }
 

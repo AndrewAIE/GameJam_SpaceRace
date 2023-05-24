@@ -15,6 +15,12 @@ public:
 	void Move();
 
 	void CheckCollision(Rectangle object);
+	void EdgeCollision();
+
+	void SetDirection();
+	Vector2 GetDirection();
+	Vector2 GetPosition();
+
 
 	Rectangle GetBoundBox();
 	

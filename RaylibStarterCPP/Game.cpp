@@ -22,6 +22,8 @@ void Game::Initialize()
 
 void Game::Update() 
 {
+	
+	
 	PlayerControl();
 	m_ball.Update();
 	CheckCollision();
@@ -55,18 +57,29 @@ void Game::PlayerControl()
 void Game::CheckCollision() 
 {
 	m_ball.CheckCollision(m_player.GetBoundBox());
+	m_ball.EdgeCollision();
 	for (int x = 0; x < brickCols; x++)
 	{
 		for (int y = 0; y < brickRows; y++)
 		{
-			m_ball.CheckCollision(m_bricks[x][y].GetBoundBox());
-			if (CheckCollisionRecs(m_ball.GetBoundBox(), m_bricks[x][y].GetBoundBox())) 
+			if (!m_bricks[x][y].GetDestroyed()) 
 			{
-				m_bricks[x][y];
-			}			
+				m_ball.CheckCollision(m_bricks[x][y].GetBoundBox());
+				if (CheckCollisionRecs(m_ball.GetBoundBox(), m_bricks[x][y].GetBoundBox()))
+				{
+					m_bricks[x][y].Destroy();
+				}
+			}		
 		}
 	}
 }
+
+bool Game::CheckIfRunning()
+{
+	return m_gameRunning;
+}
+
+
 
 
 
