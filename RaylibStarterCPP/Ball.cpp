@@ -38,24 +38,105 @@ void Ball::CheckCollision(Rectangle object)
 	
 	if (CheckCollisionRecs(m_rectangleBound, object)) 
 	{
-		m_direction.y *= -1;
+		int ballMid = (m_position.x + m_width) / 2;
+		
+		int objectXLeft = object.x;
+		int objectXRight = object.x + object.width;
+		int objectXMid = (objectXLeft + objectXRight) / 2;
 
-		//find x distance
-		//if distance > ball width + other width
-		// x *= -1
+		if (m_position.y > (GetScreenHeight() / 2)) 
+		{
+			
+			m_speed += 0.2;
+
+			if (m_speed < m_speedMin)
+			{
+				m_speed = m_speedMin;
+			}
+			else if (m_speed > m_speedMax)
+			{
+				m_speed = m_speedMax;
+			}
+		}
+		else 
+		{
+			m_scoreToAdd = (int)m_speed;
+		}
+
+		if (ballMid == objectXLeft) 
+		{
+			m_direction.x = -m_xDirectionMax;
+		}
+		else if (ballMid > objectXLeft && ballMid <= objectXMid) 
+		{
+			if (m_direction.x > 0) 
+			{
+				m_direction.x *= -1;
+			}
+			else if (m_direction.x < 0) 
+			{
+				m_direction.x += m_direction.x * 0.3;
+			}
+
+			if (m_direction.x < -m_xDirectionMax) 
+			{
+				m_direction.x = -m_xDirectionMax;
+			}
+		}
+		else if (ballMid == objectXRight)
+		{
+			m_direction.x = m_xDirectionMax;
+		}
+		else if (ballMid < objectXRight && ballMid > objectXMid) 
+		{
+			if (m_direction.x < 0)
+			{
+				m_direction.x *= -1;
+			}
+			else if (m_direction.x > 0)
+			{
+				m_direction.x += m_direction.x * 0.3;
+			}
+
+			if (m_direction.x > m_xDirectionMax)
+			{
+				m_direction.x = m_xDirectionMax;
+			}
+		}
+
+		m_direction.y *= -1;
+		
+		
+
+		//when hold down space, reduce speed by 1 and add acceleration to appropriate axis
+
+
 	};
 }
 
 void Ball::EdgeCollision()
 {
-	if (m_position.x >= GetScreenWidth() - 25 || m_position.x <= 0) 
+	if (m_position.x >= GetScreenWidth() - 25) 
 	{
-		m_direction.x *= -1.0f;
+		m_direction.x = -1;
 	}
-	if (m_position.y >= GetScreenHeight() || m_position.y <= 0) 
+	if (m_position.x <= 0) 
 	{
-		m_direction.y *= -1.0f;
+		m_direction.x = 1;
 	}
+	if (m_position.y <= GetScreenHeight()/6) 
+	{
+		m_direction.y = 1;
+	}
+	if (m_position.y >= GetScreenHeight()) 
+	{
+		m_direction.y = -1;
+	}
+}
+
+int Ball::AddToScore() 
+{
+	return m_scoreToAdd;
 }
 
 Rectangle Ball::GetBoundBox()

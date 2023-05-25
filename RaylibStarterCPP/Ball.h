@@ -16,9 +16,8 @@ public:
 
 	void CheckCollision(Rectangle object);
 	void EdgeCollision();
-
-	void SetDirection();
-	Vector2 GetDirection();
+	int AddToScore();
+	
 	Vector2 GetPosition();
 
 
@@ -29,7 +28,13 @@ private:
 
 	int m_width;
 	int m_height;
+	int m_scoreToAdd;
+	
 	float m_speed;
+	float m_speedMin = 2.0f;
+	float m_speedMax = 6.0f;
+
+	float m_xDirectionMax = 4.0f;
 
 	Vector2 m_position;
 	Vector2 m_direction;

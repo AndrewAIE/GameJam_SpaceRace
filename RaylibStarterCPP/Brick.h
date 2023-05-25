@@ -23,8 +23,7 @@ private:
 	
 	int m_height;
 	int m_width;
-	int m_offset;
-
+	int m_offset;	
 	bool m_isDestroyed;
 		
 	Color m_color;

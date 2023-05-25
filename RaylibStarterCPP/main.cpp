@@ -35,13 +35,8 @@ int main(int argc, char* argv[])
 
     char title[] = "Brick Breaker 1976";
     char subtitle[] = "Arcade Edition";
-    char startGame[] = "Press Any Key To Begin";
-    char escGame[] = "Press Escape to Exit the Game";
-
-
-
-
-
+    char startGame[] = "Press Space To Begin";
+    
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
     Game game;
     game.Initialize();
@@ -53,31 +48,41 @@ int main(int argc, char* argv[])
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        BeginDrawing();
+        DrawText(title, GetScreenWidth() / 9, (GetScreenHeight() / 2) - 50, 40, WHITE);
+        DrawText(subtitle, GetScreenWidth() / 3.5f, GetScreenHeight() / 2, 30, WHITE);
+        DrawText(startGame, GetScreenWidth() / 3.85f, (GetScreenHeight() / 2) + 60, 20, WHITE);
         
-        DrawText(title, GetScreenWidth() / 2, (GetScreenHeight() / 2) - 30, 40, WHITE);
-        DrawText(subtitle, GetScreenWidth() / 2, (GetScreenHeight() / 2) + 10, 30, WHITE);
+        ClearBackground(BLACK);
+
+        if (IsKeyPressed(KEY_SPACE)) 
+        {
+            gameRunning = true;
+            game.Initialize();
+        }
+
         
+        while (gameRunning) {
+            game.Update();
+            // Draw
+            //----------------------------------------------------------------------------------
+            BeginDrawing();
+
+            game.Draw();
+
+            gameRunning = game.CheckIfRunning();
+
+            ClearBackground(BLACK);
 
 
-        while(gameRunning)
+            
+            EndDrawing();
+        }
 
         // Update
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-        game.Update();
-        // Draw
-        //----------------------------------------------------------------------------------
-        BeginDrawing();
-        
-        game.Draw();
-        
-        gameRunning = game.CheckIfRunning();
-
-        ClearBackground(BLACK);
-
-        
-
         EndDrawing();
         //----------------------------------------------------------------------------------
     }

@@ -21,15 +21,17 @@ void Game::Initialize()
 }
 
 void Game::Update() 
-{
-	
-	
+{	
 	PlayerControl();
 	m_ball.Update();
 	CheckCollision();
+	CheckGameOver();
+	
 }
 void Game::Draw() 
 {
+	DrawText("Score: ", 5, 5, 20, WHITE);
+	
 	m_player.Draw();
 	m_ball.Draw();
 	for (int x = 0; x < brickCols; x++) 
@@ -43,12 +45,12 @@ void Game::Draw()
 
 void Game::PlayerControl() 
 {
-	if (IsKeyDown(KEY_LEFT)) 
+	if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) 
 	{
 		m_player.MoveLeft();
 	}
 
-	if (IsKeyDown(KEY_RIGHT)) 
+	if (IsKeyDown(KEY_RIGHT) ||IsKeyDown(KEY_D)) 
 	{
 		m_player.MoveRight();
 	}
@@ -68,9 +70,20 @@ void Game::CheckCollision()
 				if (CheckCollisionRecs(m_ball.GetBoundBox(), m_bricks[x][y].GetBoundBox()))
 				{
 					m_bricks[x][y].Destroy();
+					m_gameScore += m_ball.AddToScore();
+					m_bricksLeft--;
 				}
 			}		
 		}
+	}
+}
+
+
+void Game::CheckGameOver() 
+{
+	if (m_bricksLeft == 0) 
+	{
+		m_gameRunning = false;
 	}
 }
 
@@ -78,7 +91,6 @@ bool Game::CheckIfRunning()
 {
 	return m_gameRunning;
 }
-
 
 
 
