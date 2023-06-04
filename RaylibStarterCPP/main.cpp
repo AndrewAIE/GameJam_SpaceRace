@@ -33,9 +33,11 @@ int main(int argc, char* argv[])
     int screenWidth = 510;
     int screenHeight = 610;
 
+
+
     char title[] = "Brick Breaker 1976";
     char subtitle[] = "Arcade Edition";
-    char startGame[] = "Press Space To Begin";
+    char startGame[] = "Press Enter To Begin";
     
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
     Game game;
@@ -55,7 +57,7 @@ int main(int argc, char* argv[])
         
         ClearBackground(BLACK);
 
-        if (IsKeyPressed(KEY_SPACE)) 
+        if (IsKeyPressed(KEY_ENTER)) 
         {
             gameRunning = true;
             game.Initialize();

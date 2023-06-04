@@ -23,15 +23,12 @@ void Ball::Draw()
 
 void Ball::Update() 
 {
-	Move();
+	m_position.x += m_speed * m_direction.x;
+	m_position.y += m_speed * m_direction.y;
 	m_rectangleBound = { m_position.x, m_position.y, (float)m_width, (float)m_height };
 }
 
-void Ball::Move() 
-{
-	m_position.x += m_speed * m_direction.x;
-	m_position.y += m_speed * m_direction.y;
-}
+
 
 void Ball::CheckCollision(Rectangle object) 
 {
@@ -42,12 +39,11 @@ void Ball::CheckCollision(Rectangle object)
 		
 		int objectXLeft = object.x;
 		int objectXRight = object.x + object.width;
-		int objectXMid = (objectXLeft + objectXRight) / 2;
+		int objectXMid = objectXLeft + (object.width / 2);
 
 		if (m_position.y > (GetScreenHeight() / 2)) 
-		{
-			
-			m_speed += 0.2;
+		{			
+			m_speed += 0.4;
 
 			if (m_speed < m_speedMin)
 			{
@@ -75,7 +71,7 @@ void Ball::CheckCollision(Rectangle object)
 			}
 			else if (m_direction.x < 0) 
 			{
-				m_direction.x += m_direction.x * 0.3;
+				m_direction.x += 0.5;
 			}
 
 			if (m_direction.x < -m_xDirectionMax) 
@@ -95,7 +91,7 @@ void Ball::CheckCollision(Rectangle object)
 			}
 			else if (m_direction.x > 0)
 			{
-				m_direction.x += m_direction.x * 0.3;
+				m_direction.x += 0.5;
 			}
 
 			if (m_direction.x > m_xDirectionMax)
@@ -128,10 +124,24 @@ void Ball::EdgeCollision()
 	{
 		m_direction.y = 1;
 	}
+	
+}
+
+bool Ball::BottomEdgeCollision()
+{
 	if (m_position.y >= GetScreenHeight()) 
 	{
-		m_direction.y = -1;
+		ResetBall();
+		m_lifeCount--;
+		return false;
 	}
+
+	return true;
+}
+
+void Ball::SetStartPosition(Vector2 position)
+{
+	m_position = position;
 }
 
 int Ball::AddToScore() 
@@ -147,5 +157,22 @@ Rectangle Ball::GetBoundBox()
 Vector2 Ball::GetPosition() 
 {
 	return m_position;
+}
+
+void Ball::SetLifeCount() 
+{
+	m_lifeCount = 3;
+}
+
+void Ball::ResetBall() 
+{
+	m_position = { (GetScreenWidth() / 2.0f) - 25, GetScreenHeight() / 2.0f };
+	m_direction = { 1,2 };
+	m_speed = 2.0f;
+}
+
+int Ball::GetLifeCount() 
+{
+	return m_lifeCount;
 }
 

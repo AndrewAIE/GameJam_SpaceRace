@@ -24,7 +24,9 @@ private:
 	
 	int m_gameScore = 0;
 	int m_bricksLeft = brickCols * brickRows;
-	char m_gameScoreString[4];
+	int m_playerLives = 3;
+	int m_highScore;
+	
 	
 	int m_paddleHeightRatio = 45;
 	int m_paddleWidthRatio = 15;
@@ -35,7 +37,7 @@ private:
 	int m_brickWidthRatio = 16;
 	int m_brickHeightOffset = 4;
 	int m_brickWidthOffset = 5;
-	int m_screenWidthOffset = 25;
+	int m_screenWidthOffset = 10;
 	int m_topWindowGap = GetScreenHeight() / 6;
 
 	float m_paddleGap = (float)(GetScreenHeight() - (GetScreenHeight() / m_paddleGapRatio));
@@ -45,6 +47,7 @@ private:
 	float m_brickPosY = (float)(GetScreenHeight() / m_brickHeightRatio);
 
 	bool m_gameRunning = true;
+	bool m_activeBall = false;
 	
 	float m_ballSpeed = 2.0f;
 	Vector2 m_ballDirection = { 1, 2 };

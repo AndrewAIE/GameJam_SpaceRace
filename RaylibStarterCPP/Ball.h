@@ -12,11 +12,17 @@ public:
 	
 	void Draw();
 	void Update();
-	void Move();
+	
 
 	void CheckCollision(Rectangle object);
-	void EdgeCollision();
+	void EdgeCollision();	
+	void SetStartPosition(Vector2 position);
+
+	bool BottomEdgeCollision();
 	int AddToScore();
+	void SetLifeCount();
+	void ResetBall();
+	int GetLifeCount();
 	
 	Vector2 GetPosition();
 
@@ -29,6 +35,7 @@ private:
 	int m_width;
 	int m_height;
 	int m_scoreToAdd;
+	int m_lifeCount = 3;
 	
 	float m_speed;
 	float m_speedMin = 2.0f;

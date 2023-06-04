@@ -21,8 +21,7 @@ void Brick::Draw()
 	if (!m_isDestroyed) 
 	{
 		DrawRectangle(m_position.x, m_position.y, m_width, m_height, m_color);
-	}
-	
+	}	
 }
 
 void Brick::AssignColor(int yPos)
